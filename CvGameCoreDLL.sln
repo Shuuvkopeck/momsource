@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Express 2012 for Windows Desktop
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CvGameCoreDLL", "CvGameCoreDLL.vcxproj", "{E25EAABA-5ECC-441C-ADAD-4C9EE96CAA66}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E25EAABA-5ECC-441C-ADAD-4C9EE96CAA66}.Debug|Win32.ActiveCfg = Release|Win32
+		{E25EAABA-5ECC-441C-ADAD-4C9EE96CAA66}.Debug|Win32.Build.0 = Release|Win32
+		{E25EAABA-5ECC-441C-ADAD-4C9EE96CAA66}.Release|Win32.ActiveCfg = Release|Win32
+		{E25EAABA-5ECC-441C-ADAD-4C9EE96CAA66}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

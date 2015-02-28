@@ -1,0 +1,493 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="readme.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\CvGameCoreDLL better AI.sln" />
+    <None Include="..\CvGameCoreDLL better AI.suo" />
+    <None Include="..\Makefile" />
+    <None Include="FVariableSystem.inl">
+      <Filter>Header Files</Filter>
+    </None>
+    <None Include="interfaceDirtyBits.inl">
+      <Filter>Header Files</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="_precompile.cpp" />
+    <ClCompile Include="AI_Bonus.cpp" />
+    <ClCompile Include="AI_ChooseProduction.cpp" />
+    <ClCompile Include="AI_ChooseSpecialist.cpp" />
+    <ClCompile Include="AI_ChooseTech.cpp" />
+    <ClCompile Include="AI_Group.cpp" />
+    <ClCompile Include="AI_GroupCityInvasion.cpp" />
+    <ClCompile Include="AI_GroupSettle.cpp" />
+    <ClCompile Include="AI_Hero.cpp" />
+    <ClCompile Include="AI_Units.cpp" />
+    <ClCompile Include="AI_War.cpp" />
+    <ClCompile Include="CvArea.cpp" />
+    <ClCompile Include="CvArtFileMgr.cpp" />
+    <ClCompile Include="CvBarbarians.cpp" />
+    <ClCompile Include="CvCity.cpp" />
+    <ClCompile Include="CvCityAI.cpp" />
+    <ClCompile Include="CvCombatAura.cpp" />
+    <ClCompile Include="CvDeal.cpp" />
+    <ClCompile Include="CvDiploParameters.cpp" />
+    <ClCompile Include="CvDLLButtonPopup.cpp" />
+    <ClCompile Include="CvDLLEntity.cpp" />
+    <ClCompile Include="CvDLLPython.cpp" />
+    <ClCompile Include="CvDllPythonEvents.cpp" />
+    <ClCompile Include="CvDllTranslator.cpp" />
+    <ClCompile Include="CvDLLWidgetData.cpp" />
+    <ClCompile Include="CvDungeon.cpp" />
+    <ClCompile Include="CvEventReporter.cpp" />
+    <ClCompile Include="CvFractal.cpp" />
+    <ClCompile Include="CvGame.cpp" />
+    <ClCompile Include="CvGameAI.cpp" />
+    <ClCompile Include="CvGameCoreDLL.cpp" />
+    <ClCompile Include="CvGameCoreUtils.cpp" />
+    <ClCompile Include="CvGameInterface.cpp" />
+    <ClCompile Include="CvGameTextMgr.cpp" />
+    <ClCompile Include="CvGlobals.cpp" />
+    <ClCompile Include="CvHallOfFameInfo.cpp" />
+    <ClCompile Include="CvImprovementSystem.cpp" />
+    <ClCompile Include="CvInfos.cpp" />
+    <ClCompile Include="CvInfoWater.cpp" />
+    <ClCompile Include="CvInitCore.cpp" />
+    <ClCompile Include="CvMap.cpp" />
+    <ClCompile Include="CvMapGenerator.cpp" />
+    <ClCompile Include="CvMessageControl.cpp" />
+    <ClCompile Include="CvMessageData.cpp" />
+    <ClCompile Include="CvPlayer.cpp" />
+    <ClCompile Include="CvPlayerAI.cpp" />
+    <ClCompile Include="CvPlot.cpp" />
+    <ClCompile Include="CvPlotGroup.cpp" />
+    <ClCompile Include="CvPopupInfo.cpp" />
+    <ClCompile Include="CvPopupReturn.cpp" />
+    <ClCompile Include="CvRandom.cpp" />
+    <ClCompile Include="CvReplayInfo.cpp" />
+    <ClCompile Include="CvReplayMessage.cpp" />
+    <ClCompile Include="CvSelectionGroup.cpp" />
+    <ClCompile Include="CvSelectionGroupAI.cpp" />
+    <ClCompile Include="CvStatistics.cpp" />
+    <ClCompile Include="CvStructs.cpp" />
+    <ClCompile Include="CvTalkingHeadMessage.cpp" />
+    <ClCompile Include="CvTeam.cpp" />
+    <ClCompile Include="CvTeamAI.cpp" />
+    <ClCompile Include="CvTextScreens.cpp" />
+    <ClCompile Include="CvUnit.cpp" />
+    <ClCompile Include="CvUnitAI.cpp" />
+    <ClCompile Include="CvViewport.cpp" />
+    <ClCompile Include="CvWinamp.cpp" />
+    <ClCompile Include="CvXMLLoadUtility.cpp" />
+    <ClCompile Include="CvXMLLoadUtilityGet.cpp" />
+    <ClCompile Include="CvXMLLoadUtilityInit.cpp" />
+    <ClCompile Include="CvXMLLoadUtilityModTools.cpp" />
+    <ClCompile Include="CvXMLLoadUtilitySet.cpp" />
+    <ClCompile Include="CvXMLLoadUtilitySetMod.cpp" />
+    <ClCompile Include="CyArea.cpp" />
+    <ClCompile Include="CyAreaInterface.cpp" />
+    <ClCompile Include="CyArgsList.cpp" />
+    <ClCompile Include="CyArtFileMgr.cpp" />
+    <ClCompile Include="CyArtFileMgrInterface.cpp" />
+    <ClCompile Include="CyCity.cpp" />
+    <ClCompile Include="CyCityInterface1.cpp" />
+    <ClCompile Include="CyCityInterface2.cpp" />
+    <ClCompile Include="CyCombatAura.c" />
+    <ClCompile Include="CyCombatAura.cpp" />
+    <ClCompile Include="CyCombatAuraInterface.cpp" />
+    <ClCompile Include="CyDeal.cpp" />
+    <ClCompile Include="CyEnumsInterface.cpp" />
+    <ClCompile Include="CyGame.cpp" />
+    <ClCompile Include="CyGameCoreUtils.cpp" />
+    <ClCompile Include="CyGameCoreUtilsInterface.cpp" />
+    <ClCompile Include="CyGameInterface.cpp" />
+    <ClCompile Include="CyGameTextMgr.cpp" />
+    <ClCompile Include="CyGameTextMgrInterface.cpp" />
+    <ClCompile Include="CyGlobalContext.cpp" />
+    <ClCompile Include="CyGlobalContextInterface1.cpp" />
+    <ClCompile Include="CyGlobalContextInterface2.cpp" />
+    <ClCompile Include="CyGlobalContextInterface3.cpp" />
+    <ClCompile Include="CyGlobalContextInterface4.cpp" />
+    <ClCompile Include="CyHallOfFameInfo.cpp" />
+    <ClCompile Include="CyHallOfFameInterface.cpp" />
+    <ClCompile Include="CyInfoInterface1.cpp" />
+    <ClCompile Include="CyInfoInterface2.cpp" />
+    <ClCompile Include="CyInfoInterface3.cpp" />
+    <ClCompile Include="CyInfoInterface4.cpp" />
+    <ClCompile Include="CyMap.cpp" />
+    <ClCompile Include="CyMapGenerator.cpp" />
+    <ClCompile Include="CyMapGeneratorInterface.cpp" />
+    <ClCompile Include="CyMapInterface.cpp" />
+    <ClCompile Include="CyMessageControl.cpp" />
+    <ClCompile Include="CyMessageControl2.cpp" />
+    <ClCompile Include="CyMessageControlInterface.cpp" />
+    <ClCompile Include="CyPlayer.cpp" />
+    <ClCompile Include="CyPlayerInterface1.cpp" />
+    <ClCompile Include="CyPlayerInterface2.cpp" />
+    <ClCompile Include="CyPlot.cpp" />
+    <ClCompile Include="CyPlotInterface1.cpp" />
+    <ClCompile Include="CyRandomInterface.cpp" />
+    <ClCompile Include="CyReplayInfo.cpp" />
+    <ClCompile Include="CySelectionGroup.cpp" />
+    <ClCompile Include="CySelectionGroupInterface.cpp" />
+    <ClCompile Include="CySelectionGroupInterface2.cpp" />
+    <ClCompile Include="CyStructsInterface1.cpp" />
+    <ClCompile Include="CyTeam.cpp" />
+    <ClCompile Include="CyTeamInterface.cpp" />
+    <ClCompile Include="CyUnit.cpp" />
+    <ClCompile Include="CyUnitInterface1.cpp" />
+    <ClCompile Include="CyWinamp.cpp" />
+    <ClCompile Include="CyWinampInterface.cpp" />
+    <ClCompile Include="FAssert.cpp" />
+    <ClCompile Include="FDialogTemplate.cpp" />
+    <ClCompile Include="Hilfsfunktionen.cpp" />
+    <ClCompile Include="Pathfinding.cpp" />
+    <ClCompile Include="ThreadObject.cpp" />
+    <ClCompile Include="ThreadOrganizer.cpp" />
+    <ClCompile Include="TimeMeasure.cpp" />
+    <ClCompile Include="Tree.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="AI_Defines.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CvAIGroup.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CvArea.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CvArtFileMgr.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CvCity.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CvCityAI.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CvCombatAura.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CvDeal.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CvDefines.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CvDiploParameters.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CvDLLButtonPopup.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CvDLLDataStreamIFaceBase.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CvDLLEngineIFaceBase.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CvDLLEntity.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CvDLLEntityIFaceBase.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CvDLLEventReporterIFaceBase.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CvDLLFAStarIFaceBase.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CvDLLFlagEntityIFaceBase.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CvDLLIniParserIFaceBase.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CvDLLInterfaceIFaceBase.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CvDLLPlotBuilderIFaceBase.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CvDllPythonEvents.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CvDLLPythonIFaceBase.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CvDLLSymbolIFaceBase.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CvDllTranslator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CvDLLUtilityIFaceBase.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CvDLLWidgetData.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CvDLLXMLIFaceBase.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CvDungeon.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CvEnums.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CvEventReporter.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CvFractal.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CvGame.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CvGameAI.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CvGameCoreDLL.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CvGameCoreDLLDefNew.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CvGameCoreDLLUndefNew.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CvGameCoreUtils.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CvGameTextMgr.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CvGlobals.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CvHallOfFameInfo.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CvInfos.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CvInfoWater.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CvInitCore.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CvMap.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CvMapGenerator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CvMessageControl.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CvMessageData.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CvPlayer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CvPlayerAI.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CvPlot.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CvPlotGroup.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CvPopupInfo.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CvPopupReturn.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CvRandom.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CvReplayInfo.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CvReplayMessage.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CvSelectionGroup.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CvSelectionGroupAI.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CvStatistics.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CvString.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CvStructs.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CvTalkingHeadMessage.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CvTeam.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CvTeamAI.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CvUnit.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CvUnitAI.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CvViewport.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CvWinamp.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CvXMLLoadUtility.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CvXMLLoadUtilityModTools.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CvXMLLoadUtilitySetMod.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CyArea.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CyArgsList.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CyArtFileMgr.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CyCity.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CyCombatAura.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CyDeal.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CyGame.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CyGameCoreUtils.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CyGameTextMgr.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CyGlobalContext.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CyHallOfFameInfo.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CyMap.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CyMapGenerator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CyMessageControl.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CyMessageControl2.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CyPlayer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CyPlot.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CyReplayInfo.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CySelectionGroup.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CyTeam.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CyUnit.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CyWinamp.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FAssert.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FAStarNode.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FDataStreamBase.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FDialogTemplate.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FFreeListArray.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FFreeListArrayBase.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FFreeListTrashArray.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FInputDevice.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FProfiler.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FVariableSystem.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Hilfsfunktionen.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="LinkedList.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="resource.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ThreadObject.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ThreadOrganizer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="TimeMeasure.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Tree.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
