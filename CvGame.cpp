@@ -11646,7 +11646,7 @@ void CvGame::doGlobalEnchantments()
 										if (!pLoopPlot->isPeak() && !pLoopPlot->isWater() && !pLoopPlot->isCity())
 										{
 
-											if (pLoopPlot->isOwned())
+											if (pLoopPlot->isOwned() && (pLoopPlot->getPlotCity() != NULL))
 											{
 												if (pLoopPlot->getPlotCity()->isHasReligion((ReligionTypes)kProject.getPrereqReligion()) && (pLoopPlot->getPlotCity()->getReligionCount() == 1))
 												{
@@ -11668,13 +11668,16 @@ void CvGame::doGlobalEnchantments()
 
 														for (int iU = 0; iU < pLoopPlot->getNumUnits(); iU++)
 														{
-															if (!pLoopPlot->getUnitByIndex(iU)->isFlying())
+															if (pLoopPlot->getUnitByIndex(iU) != NULL)
 															{
-																szBuffer.Format(L"Your %s has been entangled by fast-growing vegetation.", pLoopPlot->getUnitByIndex(iU)->getName());
-																gDLL->getInterfaceIFace()->addMessage(pLoopPlot->getUnitByIndex(iU)->getOwner(), false, GC.getEVENT_MESSAGE_TIME(), szBuffer, 0, MESSAGE_TYPE_MINOR_EVENT, pLoopPlot->getUnitByIndex(iU)->getButton(), (ColorTypes)GC.getInfoTypeForString("COLOR_RED"), pLoopPlot->getX(), pLoopPlot->getY(), true, true);
-																pLoopPlot->getUnitByIndex(iU)->changeImmobileTimer(1);
-																pLoopPlot->getUnitByIndex(iU)->doDamage(30, 50, NULL, DAMAGE_PHYSICAL, false);
+																if (!pLoopPlot->getUnitByIndex(iU)->isFlying())
+																{
+																	szBuffer.Format(L"Your %s has been entangled by fast-growing vegetation.", pLoopPlot->getUnitByIndex(iU)->getName().GetCString());
+																	gDLL->getInterfaceIFace()->addMessage(pLoopPlot->getUnitByIndex(iU)->getOwner(), false, GC.getEVENT_MESSAGE_TIME(), szBuffer, 0, MESSAGE_TYPE_MINOR_EVENT, pLoopPlot->getUnitByIndex(iU)->getButton(), (ColorTypes)GC.getInfoTypeForString("COLOR_RED"), pLoopPlot->getX(), pLoopPlot->getY(), true, true);
+																	pLoopPlot->getUnitByIndex(iU)->changeImmobileTimer(1);
+																	pLoopPlot->getUnitByIndex(iU)->doDamage(30, 50, NULL, DAMAGE_PHYSICAL, false);
 
+																}
 															}
 														}
 
@@ -11700,13 +11703,16 @@ void CvGame::doGlobalEnchantments()
 
 													for (int iU = 0; iU < pLoopPlot->getNumUnits(); iU++)
 													{
-														if (!pLoopPlot->getUnitByIndex(iU)->isFlying())
+														if (pLoopPlot->getUnitByIndex(iU) != NULL)
 														{
-															szBuffer.Format(L"Your %s has been entangled by fast-growing vegetation.", pLoopPlot->getUnitByIndex(iU)->getName());
-															gDLL->getInterfaceIFace()->addMessage(pLoopPlot->getUnitByIndex(iU)->getOwner(), false, GC.getEVENT_MESSAGE_TIME(), szBuffer, 0, MESSAGE_TYPE_MINOR_EVENT, pLoopPlot->getUnitByIndex(iU)->getButton(), (ColorTypes)GC.getInfoTypeForString("COLOR_RED"), pLoopPlot->getX(), pLoopPlot->getY(), true, true);
-															pLoopPlot->getUnitByIndex(iU)->changeImmobileTimer(1);
-															pLoopPlot->getUnitByIndex(iU)->doDamage(30, 50, NULL, DAMAGE_PHYSICAL, false);
+															if (!pLoopPlot->getUnitByIndex(iU)->isFlying())
+															{
+																szBuffer.Format(L"Your %s has been entangled by fast-growing vegetation.", pLoopPlot->getUnitByIndex(iU)->getName().GetCString());
+																gDLL->getInterfaceIFace()->addMessage(pLoopPlot->getUnitByIndex(iU)->getOwner(), false, GC.getEVENT_MESSAGE_TIME(), szBuffer, 0, MESSAGE_TYPE_MINOR_EVENT, pLoopPlot->getUnitByIndex(iU)->getButton(), (ColorTypes)GC.getInfoTypeForString("COLOR_RED"), pLoopPlot->getX(), pLoopPlot->getY(), true, true);
+																pLoopPlot->getUnitByIndex(iU)->changeImmobileTimer(1);
+																pLoopPlot->getUnitByIndex(iU)->doDamage(30, 50, NULL, DAMAGE_PHYSICAL, false);
 
+															}
 														}
 													}
 
@@ -11733,7 +11739,7 @@ void CvGame::doGlobalEnchantments()
 										if (!pLoopPlot->isPeak() && !pLoopPlot->isWater() && !pLoopPlot->isCity())
 										{
 
-											if (pLoopPlot->isOwned())
+											if (pLoopPlot->isOwned() && (pLoopPlot->getPlotCity() != NULL))
 											{
 												if (pLoopPlot->getPlotCity()->isHasReligion((ReligionTypes)kProject.getPrereqReligion()) && (pLoopPlot->getPlotCity()->getReligionCount() == 1))
 												{
@@ -11750,10 +11756,13 @@ void CvGame::doGlobalEnchantments()
 
 														for (int iU = 0; iU < pLoopPlot->getNumUnits(); iU++)
 														{
-															szBuffer.Format(L"Your %s has been buried under drifts of heavy snow.", pLoopPlot->getUnitByIndex(iU)->getName());
-															gDLL->getInterfaceIFace()->addMessage(pLoopPlot->getUnitByIndex(iU)->getOwner(), false, GC.getEVENT_MESSAGE_TIME(), szBuffer, 0, MESSAGE_TYPE_MINOR_EVENT, pLoopPlot->getUnitByIndex(iU)->getButton(), (ColorTypes)GC.getInfoTypeForString("COLOR_RED"), pLoopPlot->getX(), pLoopPlot->getY(), true, true);
-															pLoopPlot->getUnitByIndex(iU)->changeImmobileTimer(1);
-															pLoopPlot->getUnitByIndex(iU)->doDamage(30, 50, NULL, DAMAGE_COLD, false);
+															if (pLoopPlot->getUnitByIndex(iU) != NULL)
+															{
+																szBuffer.Format(L"Your %s has been buried under drifts of heavy snow.", pLoopPlot->getUnitByIndex(iU)->getName().GetCString());
+																gDLL->getInterfaceIFace()->addMessage(pLoopPlot->getUnitByIndex(iU)->getOwner(), false, GC.getEVENT_MESSAGE_TIME(), szBuffer, 0, MESSAGE_TYPE_MINOR_EVENT, pLoopPlot->getUnitByIndex(iU)->getButton(), (ColorTypes)GC.getInfoTypeForString("COLOR_RED"), pLoopPlot->getX(), pLoopPlot->getY(), true, true);
+																pLoopPlot->getUnitByIndex(iU)->changeImmobileTimer(1);
+																pLoopPlot->getUnitByIndex(iU)->doDamage(30, 50, NULL, DAMAGE_COLD, false);
+															}
 														}
 
 														bEffect = true;
@@ -11773,11 +11782,13 @@ void CvGame::doGlobalEnchantments()
 
 													for (int iU = 0; iU < pLoopPlot->getNumUnits(); iU++)
 													{
-
-														szBuffer.Format(L"Your %s has been buried under drifts of heavy snow.", pLoopPlot->getUnitByIndex(iU)->getName());
-														gDLL->getInterfaceIFace()->addMessage(pLoopPlot->getUnitByIndex(iU)->getOwner(), false, GC.getEVENT_MESSAGE_TIME(), szBuffer, 0, MESSAGE_TYPE_MINOR_EVENT, pLoopPlot->getUnitByIndex(iU)->getButton(), (ColorTypes)GC.getInfoTypeForString("COLOR_RED"), pLoopPlot->getX(), pLoopPlot->getY(), true, true);
-														pLoopPlot->getUnitByIndex(iU)->changeImmobileTimer(1);
-														pLoopPlot->getUnitByIndex(iU)->doDamage(30, 50, NULL, DAMAGE_COLD, false);
+														if (pLoopPlot->getUnitByIndex(iU) != NULL)
+														{
+															szBuffer.Format(L"Your %s has been buried under drifts of heavy snow.", pLoopPlot->getUnitByIndex(iU)->getName().GetCString());
+															gDLL->getInterfaceIFace()->addMessage(pLoopPlot->getUnitByIndex(iU)->getOwner(), false, GC.getEVENT_MESSAGE_TIME(), szBuffer, 0, MESSAGE_TYPE_MINOR_EVENT, pLoopPlot->getUnitByIndex(iU)->getButton(), (ColorTypes)GC.getInfoTypeForString("COLOR_RED"), pLoopPlot->getX(), pLoopPlot->getY(), true, true);
+															pLoopPlot->getUnitByIndex(iU)->changeImmobileTimer(1);
+															pLoopPlot->getUnitByIndex(iU)->doDamage(30, 50, NULL, DAMAGE_COLD, false);
+														}
 													}
 
 													bEffect = true;
@@ -11801,7 +11812,7 @@ void CvGame::doGlobalEnchantments()
 									//The Order has no terraforming component.  Instead it has a chance of destroying certain buildings in each enemy city.
 									else if (kProject.getPrereqReligion() == GC.getInfoTypeForString("RELIGION_THE_ORDER"))
 									{
-										if (pLoopPlot->isCity())
+										if (pLoopPlot->isCity() && (pLoopPlot->getPlotCity() != NULL))
 										{
 											CvCity *pTargetCity = pLoopPlot->getPlotCity();
 											if (pTargetCity->isHasReligion((ReligionTypes)kProject.getPrereqReligion()) && (pTargetCity->getReligionCount() == 1))
@@ -11888,11 +11899,14 @@ void CvGame::doGlobalEnchantments()
 
 														for (int iU = 0; iU < pLoopPlot->getNumUnits(); iU++)
 														{
-															if (!pLoopPlot->getUnitByIndex(iU)->isFlying() && !pLoopPlot->getUnitByIndex(iU)->isWaterWalking())
+															if (pLoopPlot->getUnitByIndex(iU) != NULL)
 															{
-																szBuffer.Format(L"Your %s has been consumed by a tidal wave from angry seas.", pLoopPlot->getUnitByIndex(iU)->getName());
-																gDLL->getInterfaceIFace()->addMessage(pLoopPlot->getUnitByIndex(iU)->getOwner(), false, GC.getEVENT_MESSAGE_TIME(), szBuffer, 0, MESSAGE_TYPE_MINOR_EVENT, pLoopPlot->getUnitByIndex(iU)->getButton(), (ColorTypes)GC.getInfoTypeForString("COLOR_RED"), pLoopPlot->getX(), pLoopPlot->getY(), true, true);
-																pLoopPlot->getUnitByIndex(iU)->kill(false);
+																if (!pLoopPlot->getUnitByIndex(iU)->isFlying() && !pLoopPlot->getUnitByIndex(iU)->isWaterWalking())
+																{
+																	szBuffer.Format(L"Your %s has been consumed by a tidal wave from angry seas.", pLoopPlot->getUnitByIndex(iU)->getName().GetCString());
+																	gDLL->getInterfaceIFace()->addMessage(pLoopPlot->getUnitByIndex(iU)->getOwner(), false, GC.getEVENT_MESSAGE_TIME(), szBuffer, 0, MESSAGE_TYPE_MINOR_EVENT, pLoopPlot->getUnitByIndex(iU)->getButton(), (ColorTypes)GC.getInfoTypeForString("COLOR_RED"), pLoopPlot->getX(), pLoopPlot->getY(), true, true);
+																	pLoopPlot->getUnitByIndex(iU)->kill(false);
+																}
 															}
 														}
 
@@ -11914,11 +11928,14 @@ void CvGame::doGlobalEnchantments()
 
 													for (int iU = 0; iU < pLoopPlot->getNumUnits(); iU++)
 													{
-														if (!pLoopPlot->getUnitByIndex(iU)->isFlying() && !pLoopPlot->getUnitByIndex(iU)->isWaterWalking())
+														if (pLoopPlot->getUnitByIndex(iU) != NULL)
 														{
-															szBuffer.Format(L"Your %s has been consumed by a tidal wave from angry seas.", pLoopPlot->getUnitByIndex(iU)->getName());
-															gDLL->getInterfaceIFace()->addMessage(pLoopPlot->getUnitByIndex(iU)->getOwner(), false, GC.getEVENT_MESSAGE_TIME(), szBuffer, 0, MESSAGE_TYPE_MINOR_EVENT, pLoopPlot->getUnitByIndex(iU)->getButton(), (ColorTypes)GC.getInfoTypeForString("COLOR_RED"), pLoopPlot->getX(), pLoopPlot->getY(), true, true);
-															pLoopPlot->getUnitByIndex(iU)->kill(false);
+															if (!pLoopPlot->getUnitByIndex(iU)->isFlying() && !pLoopPlot->getUnitByIndex(iU)->isWaterWalking())
+															{
+																szBuffer.Format(L"Your %s has been consumed by a tidal wave from angry seas.", pLoopPlot->getUnitByIndex(iU)->getName().GetCString());
+																gDLL->getInterfaceIFace()->addMessage(pLoopPlot->getUnitByIndex(iU)->getOwner(), false, GC.getEVENT_MESSAGE_TIME(), szBuffer, 0, MESSAGE_TYPE_MINOR_EVENT, pLoopPlot->getUnitByIndex(iU)->getButton(), (ColorTypes)GC.getInfoTypeForString("COLOR_RED"), pLoopPlot->getX(), pLoopPlot->getY(), true, true);
+																pLoopPlot->getUnitByIndex(iU)->kill(false);
+															}
 														}
 													}
 
@@ -11943,7 +11960,7 @@ void CvGame::doGlobalEnchantments()
 										if (!pLoopPlot->isPeak() && !pLoopPlot->isWater() && !pLoopPlot->isCity())
 										{
 
-											if (pLoopPlot->isOwned())
+											if (pLoopPlot->isOwned() && (pLoopPlot->getPlotCity() != NULL))
 											{
 												if (pLoopPlot->getPlotCity()->isHasReligion((ReligionTypes)kProject.getPrereqReligion()) && (pLoopPlot->getPlotCity()->getReligionCount() == 1))
 												{
@@ -11967,12 +11984,15 @@ void CvGame::doGlobalEnchantments()
 
 														for (int iU = 0; iU < pLoopPlot->getNumUnits(); iU++)
 														{
-															if (!pLoopPlot->getUnitByIndex(iU)->isFlying())
+															if (pLoopPlot->getUnitByIndex(iU) != NULL)
 															{
-																szBuffer.Format(L"Your %s has been caught up in powerful earthquakes uplifting the land.", pLoopPlot->getUnitByIndex(iU)->getName());
-																gDLL->getInterfaceIFace()->addMessage(pLoopPlot->getUnitByIndex(iU)->getOwner(), false, GC.getEVENT_MESSAGE_TIME(), szBuffer, 0, MESSAGE_TYPE_MINOR_EVENT, pLoopPlot->getUnitByIndex(iU)->getButton(), (ColorTypes)GC.getInfoTypeForString("COLOR_RED"), pLoopPlot->getX(), pLoopPlot->getY(), true, true);
-																pLoopPlot->getUnitByIndex(iU)->doDamage(50, 60, NULL, DAMAGE_PHYSICAL, false);
+																if (!pLoopPlot->getUnitByIndex(iU)->isFlying())
+																{
+																	szBuffer.Format(L"Your %s has been caught up in powerful earthquakes uplifting the land.", pLoopPlot->getUnitByIndex(iU)->getName().GetCString());
+																	gDLL->getInterfaceIFace()->addMessage(pLoopPlot->getUnitByIndex(iU)->getOwner(), false, GC.getEVENT_MESSAGE_TIME(), szBuffer, 0, MESSAGE_TYPE_MINOR_EVENT, pLoopPlot->getUnitByIndex(iU)->getButton(), (ColorTypes)GC.getInfoTypeForString("COLOR_RED"), pLoopPlot->getX(), pLoopPlot->getY(), true, true);
+																	pLoopPlot->getUnitByIndex(iU)->doDamage(50, 60, NULL, DAMAGE_PHYSICAL, false);
 
+																}
 															}
 														}
 
@@ -12000,12 +12020,15 @@ void CvGame::doGlobalEnchantments()
 
 													for (int iU = 0; iU < pLoopPlot->getNumUnits(); iU++)
 													{
-														if (!pLoopPlot->getUnitByIndex(iU)->isFlying())
+														if (pLoopPlot->getUnitByIndex(iU) != NULL)
 														{
-															szBuffer.Format(L"Your %s has been caught up in powerful earthquakes uplifting the land.", pLoopPlot->getUnitByIndex(iU)->getName());
-															gDLL->getInterfaceIFace()->addMessage(pLoopPlot->getUnitByIndex(iU)->getOwner(), false, GC.getEVENT_MESSAGE_TIME(), szBuffer, 0, MESSAGE_TYPE_MINOR_EVENT, pLoopPlot->getUnitByIndex(iU)->getButton(), (ColorTypes)GC.getInfoTypeForString("COLOR_RED"), pLoopPlot->getX(), pLoopPlot->getY(), true, true);
-															pLoopPlot->getUnitByIndex(iU)->doDamage(50, 60, NULL, DAMAGE_PHYSICAL, false);
+															if (!pLoopPlot->getUnitByIndex(iU)->isFlying())
+															{
+																szBuffer.Format(L"Your %s has been caught up in powerful earthquakes uplifting the land.", pLoopPlot->getUnitByIndex(iU)->getName().GetCString());
+																gDLL->getInterfaceIFace()->addMessage(pLoopPlot->getUnitByIndex(iU)->getOwner(), false, GC.getEVENT_MESSAGE_TIME(), szBuffer, 0, MESSAGE_TYPE_MINOR_EVENT, pLoopPlot->getUnitByIndex(iU)->getButton(), (ColorTypes)GC.getInfoTypeForString("COLOR_RED"), pLoopPlot->getX(), pLoopPlot->getY(), true, true);
+																pLoopPlot->getUnitByIndex(iU)->doDamage(50, 60, NULL, DAMAGE_PHYSICAL, false);
 
+															}
 														}
 													}
 
@@ -12030,7 +12053,7 @@ void CvGame::doGlobalEnchantments()
 										if (!pLoopPlot->isPeak() && !pLoopPlot->isWater() && !pLoopPlot->isCity())
 										{
 
-											if (pLoopPlot->isOwned())
+											if (pLoopPlot->isOwned() && (pLoopPlot->getPlotCity() != NULL))
 											{
 												if (pLoopPlot->getPlotCity()->isHasReligion((ReligionTypes)kProject.getPrereqReligion()) && (pLoopPlot->getPlotCity()->getReligionCount() == 1))
 												{
@@ -12049,12 +12072,15 @@ void CvGame::doGlobalEnchantments()
 
 														for (int iU = 0; iU < pLoopPlot->getNumUnits(); iU++)
 														{
-															if (!pLoopPlot->getUnitByIndex(iU)->isFlying())
+															if (pLoopPlot->getUnitByIndex(iU) != NULL)
 															{
-																szBuffer.Format(L"Your %s has been caught up in demonic hellfire as it races across the land.", pLoopPlot->getUnitByIndex(iU)->getName());
-																gDLL->getInterfaceIFace()->addMessage(pLoopPlot->getUnitByIndex(iU)->getOwner(), false, GC.getEVENT_MESSAGE_TIME(), szBuffer, 0, MESSAGE_TYPE_MINOR_EVENT, pLoopPlot->getUnitByIndex(iU)->getButton(), (ColorTypes)GC.getInfoTypeForString("COLOR_RED"), pLoopPlot->getX(), pLoopPlot->getY(), true, true);
-																pLoopPlot->getUnitByIndex(iU)->doDamage(50, 50, NULL, DAMAGE_FIRE, false);
+																if (!pLoopPlot->getUnitByIndex(iU)->isFlying())
+																{
+																	szBuffer.Format(L"Your %s has been caught up in demonic hellfire as it races across the land.", pLoopPlot->getUnitByIndex(iU)->getName().GetCString());
+																	gDLL->getInterfaceIFace()->addMessage(pLoopPlot->getUnitByIndex(iU)->getOwner(), false, GC.getEVENT_MESSAGE_TIME(), szBuffer, 0, MESSAGE_TYPE_MINOR_EVENT, pLoopPlot->getUnitByIndex(iU)->getButton(), (ColorTypes)GC.getInfoTypeForString("COLOR_RED"), pLoopPlot->getX(), pLoopPlot->getY(), true, true);
+																	pLoopPlot->getUnitByIndex(iU)->doDamage(50, 50, NULL, DAMAGE_FIRE, false);
 
+																}
 															}
 														}
 
@@ -12073,12 +12099,15 @@ void CvGame::doGlobalEnchantments()
 
 													for (int iU = 0; iU < pLoopPlot->getNumUnits(); iU++)
 													{
-														if (!pLoopPlot->getUnitByIndex(iU)->isFlying())
+														if (pLoopPlot->getUnitByIndex(iU) != NULL)
 														{
-															szBuffer.Format(L"Your %s has been caught up in demonic hellfire as it races across the land.", pLoopPlot->getUnitByIndex(iU)->getName());
-															gDLL->getInterfaceIFace()->addMessage(pLoopPlot->getUnitByIndex(iU)->getOwner(), false, GC.getEVENT_MESSAGE_TIME(), szBuffer, 0, MESSAGE_TYPE_MINOR_EVENT, pLoopPlot->getUnitByIndex(iU)->getButton(), (ColorTypes)GC.getInfoTypeForString("COLOR_RED"), pLoopPlot->getX(), pLoopPlot->getY(), true, true);
-															pLoopPlot->getUnitByIndex(iU)->doDamage(50, 50, NULL, DAMAGE_FIRE, false);
+															if (!pLoopPlot->getUnitByIndex(iU)->isFlying())
+															{
+																szBuffer.Format(L"Your %s has been caught up in demonic hellfire as it races across the land.", pLoopPlot->getUnitByIndex(iU)->getName().GetCString());
+																gDLL->getInterfaceIFace()->addMessage(pLoopPlot->getUnitByIndex(iU)->getOwner(), false, GC.getEVENT_MESSAGE_TIME(), szBuffer, 0, MESSAGE_TYPE_MINOR_EVENT, pLoopPlot->getUnitByIndex(iU)->getButton(), (ColorTypes)GC.getInfoTypeForString("COLOR_RED"), pLoopPlot->getX(), pLoopPlot->getY(), true, true);
+																pLoopPlot->getUnitByIndex(iU)->doDamage(50, 50, NULL, DAMAGE_FIRE, false);
 
+															}
 														}
 													}
 
@@ -12103,7 +12132,7 @@ void CvGame::doGlobalEnchantments()
 										if (!pLoopPlot->isPeak() && !pLoopPlot->isWater() && !pLoopPlot->isCity())
 										{
 
-											if (pLoopPlot->isOwned())
+											if (pLoopPlot->isOwned() && (pLoopPlot->getPlotCity() != NULL))
 											{
 												if (pLoopPlot->getPlotCity()->isHasReligion((ReligionTypes)kProject.getPrereqReligion()) && (pLoopPlot->getPlotCity()->getReligionCount() == 1))
 												{
@@ -12122,10 +12151,13 @@ void CvGame::doGlobalEnchantments()
 
 														for (int iU = 0; iU < pLoopPlot->getNumUnits(); iU++)
 														{
-															szBuffer.Format(L"Your %s has been caught up in ferocious sandstorm, blinding them.", pLoopPlot->getUnitByIndex(iU)->getName());
-															gDLL->getInterfaceIFace()->addMessage(pLoopPlot->getUnitByIndex(iU)->getOwner(), false, GC.getEVENT_MESSAGE_TIME(), szBuffer, 0, MESSAGE_TYPE_MINOR_EVENT, pLoopPlot->getUnitByIndex(iU)->getButton(), (ColorTypes)GC.getInfoTypeForString("COLOR_RED"), pLoopPlot->getX(), pLoopPlot->getY(), true, true);
-															pLoopPlot->getUnitByIndex(iU)->doDamage(20, 50, NULL, DAMAGE_PHYSICAL, false);
-															pLoopPlot->getUnitByIndex(iU)->setHasPromotion((PromotionTypes)GC.getInfoTypeForString("PROMOTION_IMPAIRED_SIGHT_TEMP"), true);
+															if (pLoopPlot->getUnitByIndex(iU) != NULL)
+															{
+																szBuffer.Format(L"Your %s has been caught up in ferocious sandstorm, blinding them.", pLoopPlot->getUnitByIndex(iU)->getName().GetCString());
+																gDLL->getInterfaceIFace()->addMessage(pLoopPlot->getUnitByIndex(iU)->getOwner(), false, GC.getEVENT_MESSAGE_TIME(), szBuffer, 0, MESSAGE_TYPE_MINOR_EVENT, pLoopPlot->getUnitByIndex(iU)->getButton(), (ColorTypes)GC.getInfoTypeForString("COLOR_RED"), pLoopPlot->getX(), pLoopPlot->getY(), true, true);
+																pLoopPlot->getUnitByIndex(iU)->doDamage(20, 50, NULL, DAMAGE_PHYSICAL, false);
+																pLoopPlot->getUnitByIndex(iU)->setHasPromotion((PromotionTypes)GC.getInfoTypeForString("PROMOTION_IMPAIRED_SIGHT_TEMP"), true);
+															}
 														}
 
 														bEffect = true;
@@ -12147,10 +12179,13 @@ void CvGame::doGlobalEnchantments()
 
 													for (int iU = 0; iU < pLoopPlot->getNumUnits(); iU++)
 													{
-														szBuffer.Format(L"Your %s has been caught up in ferocious sandstorm, blinding them.", pLoopPlot->getUnitByIndex(iU)->getName());
-														gDLL->getInterfaceIFace()->addMessage(pLoopPlot->getUnitByIndex(iU)->getOwner(), false, GC.getEVENT_MESSAGE_TIME(), szBuffer, 0, MESSAGE_TYPE_MINOR_EVENT, pLoopPlot->getUnitByIndex(iU)->getButton(), (ColorTypes)GC.getInfoTypeForString("COLOR_RED"), pLoopPlot->getX(), pLoopPlot->getY(), true, true);
-														pLoopPlot->getUnitByIndex(iU)->doDamage(20, 50, NULL, DAMAGE_PHYSICAL, false);
-														pLoopPlot->getUnitByIndex(iU)->setHasPromotion((PromotionTypes)GC.getInfoTypeForString("PROMOTION_IMPAIRED_SIGHT"), true);
+														if (pLoopPlot->getUnitByIndex(iU) != NULL)
+														{
+															szBuffer.Format(L"Your %s has been caught up in ferocious sandstorm, blinding them.", pLoopPlot->getUnitByIndex(iU)->getName().GetCString());
+															gDLL->getInterfaceIFace()->addMessage(pLoopPlot->getUnitByIndex(iU)->getOwner(), false, GC.getEVENT_MESSAGE_TIME(), szBuffer, 0, MESSAGE_TYPE_MINOR_EVENT, pLoopPlot->getUnitByIndex(iU)->getButton(), (ColorTypes)GC.getInfoTypeForString("COLOR_RED"), pLoopPlot->getX(), pLoopPlot->getY(), true, true);
+															pLoopPlot->getUnitByIndex(iU)->doDamage(20, 50, NULL, DAMAGE_PHYSICAL, false);
+															pLoopPlot->getUnitByIndex(iU)->setHasPromotion((PromotionTypes)GC.getInfoTypeForString("PROMOTION_IMPAIRED_SIGHT"), true);
+														}
 													}
 
 													bEffect = true;
