@@ -112,6 +112,7 @@ CvPlayer::CvPlayer()
 	m_paiNumBonusesConsumedByProduction = NULL;
 	m_paiFoundHolyCityCount = NULL;
 	m_paiManaFromImprovement = NULL;
+	m_paiFaithFromImprovement = NULL;
 	m_paiIgnoreBuildingGYCostCount = NULL;
 /*************************************************************************************************/
 /**	    									END													**/
@@ -498,6 +499,7 @@ void CvPlayer::uninit()
 	SAFE_DELETE_ARRAY(m_paiNumBonusesConsumedByProduction);
 	SAFE_DELETE_ARRAY(m_paiFoundHolyCityCount);
 	SAFE_DELETE_ARRAY(m_paiManaFromImprovement);
+	SAFE_DELETE_ARRAY(m_paiFaithFromImprovement);
 	SAFE_DELETE_ARRAY(m_paiIgnoreBuildingGYCostCount);
 /*************************************************************************************************/
 /**	    									END													**/
@@ -886,6 +888,13 @@ void CvPlayer::reset(PlayerTypes eID, bool bConstructorCall)
 	    for (iI = 0; iI < GC.getNumImprovementInfos(); iI++)
 		{
 			m_paiManaFromImprovement[iI] = 0;
+		}
+
+		FAssertMsg(m_paiFaithFromImprovement==NULL, "about to leak memory, CvPlayer::m_paiFaithFromImprovement");
+		m_paiFaithFromImprovement = new int[GC.getNumImprovementInfos()];
+	    for (iI = 0; iI < GC.getNumImprovementInfos(); iI++)
+		{
+			m_paiFaithFromImprovement[iI] = 0;
 		}
 
 		FAssertMsg(m_paiIgnoreBuildingGYCostCount==NULL, "about to leak memory, CvPlayer::m_paiFoundHolyCityCount");
@@ -8039,7 +8048,24 @@ void CvPlayer::processBuilding(BuildingTypes eBuilding, int iChange, CvArea* pAr
 	}
 
 	if(kBuilding.getManaFromImprovementType() != NO_IMPROVEMENT)
+	{
 		changeManaFromImprovement(kBuilding.getManaFromImprovementType(), kBuilding.getManaFromImprovement() * iChange);
+		ImprovementTypes eUpgrade = (ImprovementTypes)GC.getImprovementInfo((ImprovementTypes)kBuilding.getManaFromImprovementType()).getImprovementUpgrade();
+		while(eUpgrade != NO_IMPROVEMENT) {
+			changeManaFromImprovement(eUpgrade, kBuilding.getManaFromImprovement() * iChange);
+			eUpgrade = (ImprovementTypes)GC.getImprovementInfo(eUpgrade).getImprovementUpgrade();
+		}
+	}
+
+	if(kBuilding.getFaithFromImprovementType() != NO_IMPROVEMENT)
+	{
+		changeFaithFromImprovement(kBuilding.getFaithFromImprovementType(), kBuilding.getFaithFromImprovement() * iChange);
+		ImprovementTypes eUpgrade = (ImprovementTypes)GC.getImprovementInfo((ImprovementTypes)kBuilding.getFaithFromImprovementType()).getImprovementUpgrade();
+		while(eUpgrade != NO_IMPROVEMENT) {
+			changeFaithFromImprovement(eUpgrade, kBuilding.getFaithFromImprovement() * iChange);
+			eUpgrade = (ImprovementTypes)GC.getImprovementInfo(eUpgrade).getImprovementUpgrade();
+		}
+	}
 
 /*************************************************************************************************/
 /**	END	                                        												**/
@@ -18900,7 +18926,8 @@ void CvPlayer::processCivics(CivicTypes eCivic, int iChange)
 		}
 	}
 
-	changeReducedEquipmentCost(GC.getCivicInfo(eCivic).getReducedEquipmentCost() * iChange);	
+	changeReducedEquipmentCost(GC.getCivicInfo(eCivic).getReducedEquipmentCost() * iChange);
+	changeImprovementDiscountPercent(GC.getCivicInfo(eCivic).getImprovementDiscountPercent() * iChange);
 	changeGreatPersonRatePerCulture(GC.getCivicInfo(eCivic).getGreatPersonRatePerCulture() * iChange);
 	changeHealthRatePerCulture(GC.getCivicInfo(eCivic).getHealthRatePerCulture() * iChange);
 	updateBanditLordsCivic(iChange);
@@ -19553,6 +19580,7 @@ void CvPlayer::read(FDataStreamBase* pStream)
 	pStream->Read(GC.getNumBonusInfos(), m_paiNumBonusesConsumedByProduction);
 	pStream->Read(GC.getNumReligionInfos(), m_paiFoundHolyCityCount);
 	pStream->Read(GC.getNumImprovementInfos(), m_paiManaFromImprovement);
+	pStream->Read(GC.getNumImprovementInfos(), m_paiFaithFromImprovement);
 	pStream->Read(GC.getNumBuildingClassInfos(), m_paiIgnoreBuildingGYCostCount);
 /*************************************************************************************************/
 /**	    									END													**/
@@ -20129,6 +20157,7 @@ void CvPlayer::write(FDataStreamBase* pStream)
 	pStream->Write(GC.getNumBonusInfos(), m_paiNumBonusesConsumedByProduction);
 	pStream->Write(GC.getNumReligionInfos(), m_paiFoundHolyCityCount);
 	pStream->Write(GC.getNumImprovementInfos(), m_paiManaFromImprovement);
+	pStream->Write(GC.getNumImprovementInfos(), m_paiFaithFromImprovement);
 	pStream->Write(GC.getNumBuildingClassInfos(), m_paiIgnoreBuildingGYCostCount);
 /*************************************************************************************************/
 /**	    									END													**/
@@ -28882,10 +28911,41 @@ int CvPlayer::calculateFaithByBuildings() const
 	int iTemp=0;
 	int iLoop;
 
-	for (CvCity* pLoopCity = firstCity(&iLoop); pLoopCity != NULL; pLoopCity = nextCity(&iLoop))
+	bool bFaithFromImprovements = false;
+
+	for(int i = 0; i < GC.getNumImprovementInfos(); ++i) {
+		if(getFaithFromImprovement(i) > 0) {
+			bFaithFromImprovements = true;
+			break;
+		}
+	}
+
+	for (CvCity* pLoopCity = firstCity(&iLoop); pLoopCity != NULL; pLoopCity = nextCity(&iLoop)) {
+
+		int iFaithFromCity = pLoopCity->getCommerceRate(COMMERCE_FAITH);
+
+		if(bFaithFromImprovements) {
+			int iFaithFromImprovements = 0;
+			for(int i = 0; i < pLoopCity->getNumCityPlots(); ++i) {
+				CvPlot* pLoopPlot = pLoopCity->getCityIndexPlot(i);
+				if(pLoopPlot != NULL)
+					if(pLoopPlot->getImprovementType() != NO_IMPROVEMENT && pLoopPlot->getWorkingCity() == pLoopCity) 
+						iFaithFromImprovements += getFaithFromImprovement(pLoopPlot->getImprovementType());
+			}
+
+			iFaithFromCity += iFaithFromImprovements / 100;
+		}
+
+		iFaithFromCity *= 100 + pLoopCity->getCommerceRateModifier(COMMERCE_FAITH);
+		iFaithFromCity /= 100;
+
+		iTemp += iFaithFromCity;
+	}
+
+	/*for (CvCity* pLoopCity = firstCity(&iLoop); pLoopCity != NULL; pLoopCity = nextCity(&iLoop))
 	{
 		iTemp += (pLoopCity->getCommerceRate(COMMERCE_FAITH));
-	}
+	}*/
 
 	return iTemp;
 }
@@ -29404,6 +29464,18 @@ void CvPlayer::changeManaFromImprovement(int iImprovement, int iChange)
 int CvPlayer::getManaFromImprovement(int iImprovement) const
 {
 	return m_paiManaFromImprovement[iImprovement];
+}
+
+void CvPlayer::changeFaithFromImprovement(int iImprovement, int iChange)
+{
+	if(iChange != 0) {
+		m_paiFaithFromImprovement[iImprovement] += iChange;
+	}
+}
+
+int CvPlayer::getFaithFromImprovement(int iImprovement) const
+{
+	return m_paiFaithFromImprovement[iImprovement];
 }
 
 void CvPlayer::changeIgnoreBuildingGYCostCount(int eBuildingClass, int iChange)

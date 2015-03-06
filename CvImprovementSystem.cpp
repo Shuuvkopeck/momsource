@@ -751,7 +751,7 @@ int CvPlot::calculateExtraYieldfromAdjacentPlot(CvPlot* pPlot, YieldTypes eYield
 			break;
 		case YIELD_PRODUCTION:
 			if(bHasCottage) {
-				if(eImprovementAdjacent == GC.getIMPROVEMENT_WORKSHOP()) {
+				if(eImprovementAdjacent == GC.getIMPROVEMENT_WORKSHOP() || eImprovement == GC.getIMPROVEMENT_WATERMILL()) {
 					iValue += 1;
 				}
 			}

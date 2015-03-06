@@ -9353,6 +9353,13 @@ void CvGameTextMgr::parseCivicInfo(CvWStringBuffer &szHelpText, CivicTypes eCivi
 		szHelpText.append(gDLL->getText("TXT_KEY_CIVIC_WORKER_SPEED", GC.getCivicInfo(eCivic).getWorkerSpeedModifier()));
 	}
 
+		//	Improvement Discount Modifier
+	if (GC.getCivicInfo(eCivic).getImprovementDiscountPercent() != 0)
+	{
+		szHelpText.append(NEWLINE);
+		szHelpText.append(gDLL->getText("TXT_KEY_CIVIC_IMPROVEMENT_COST_MODIFIER_CONTEXT", GC.getCivicInfo(eCivic).getImprovementDiscountPercent()));
+	}
+
 	//	Improvement upgrade rate modifier
 	if (GC.getCivicInfo(eCivic).getImprovementUpgradeRateModifier() != 0)
 	{
@@ -13218,6 +13225,14 @@ void CvGameTextMgr::setBuildingHelp(CvWStringBuffer &szBuffer, BuildingTypes eBu
 		CvWString szMana;
 		szMana.Format(L"%.2f", 0.01f * kBuilding.getManaFromImprovement());
 		szBuffer.append(gDLL->getText("TXT_KEY_TRAIT_MANA_FROM_IMPROVEMENT_HELP", getLinkedText((ImprovementTypes)kBuilding.getManaFromImprovementType()).c_str(), szMana.GetCString()));
+    }
+
+	if(kBuilding.getFaithFromImprovement() !=0 && kBuilding.getFaithFromImprovementType() != NO_IMPROVEMENT)
+    {
+        szBuffer.append(NEWLINE);
+		CvWString szMana;
+		szMana.Format(L"%.2f", 0.01f * kBuilding.getFaithFromImprovement());
+		szBuffer.append(gDLL->getText("TXT_KEY_TRAIT_FAITH_FROM_IMPROVEMENT_HELP", getLinkedText((ImprovementTypes)kBuilding.getFaithFromImprovementType()).c_str(), szMana.GetCString()));
     }
 
     if(kBuilding.getTaxesModifier() !=0 )

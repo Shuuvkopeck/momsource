@@ -3535,6 +3535,7 @@ public:
 	bool isNoForeignCorporations() const;				// Exposed to Python
 	bool isStateReligion() const;				// Exposed to Python
 	bool isNoNonStateReligionSpread() const;				// Exposed to Python
+	int getImprovementDiscountPercent() const;
 
 	std::wstring pyGetWeLoveTheKing() { return getWeLoveTheKing(); }			// Exposed to Python
 	const wchar* getWeLoveTheKing();
@@ -3653,6 +3654,7 @@ protected:
 	int m_iStateReligionBuildingProductionModifier;
 	int m_iStateReligionFreeExperience;
 	int m_iExpInBorderModifier;
+	int m_iImprovementDiscountPercent;
 
 	bool m_bMilitaryFoodProduction;
 	bool m_bNoUnhealthyPopulation;
@@ -4013,6 +4015,8 @@ public:
     int getMistDensity() const;
     int getManaFromImprovement() const;
     int getManaFromImprovementType() const;
+	int getFaithFromImprovement() const;
+    int getFaithFromImprovementType() const;
     int getTaxesModifier() const;
     int getBuildingMaintenance() const;
     int getGPPThresholdReductionPercent() const;
@@ -4347,6 +4351,8 @@ protected:
     int m_iMistDensity;
     int m_iManaFromImprovement;
     int m_iManaFromImprovementType;
+	int m_iFaithFromImprovement;
+    int m_iFaithFromImprovementType;
     int m_iTaxesModifier;
     int m_iBuildingMaintenance;
     int m_iGPPThresholdReductionPercent;

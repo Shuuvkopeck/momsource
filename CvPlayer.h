@@ -1336,6 +1336,8 @@ public:
 	int getFoundHolyCityCount(int iReligion) const;
 	void changeManaFromImprovement(int iImprovement, int iChange);
 	int getManaFromImprovement(int iImprovement) const;
+	void changeFaithFromImprovement(int iImprovement, int iChange);
+	int getFaithFromImprovement(int iImprovement) const;
 	void changeIgnoreBuildingGYCostCount(int iBuildingClass, int iChange);
 	int getIgnoreBuildingGYCostCount(int iBuildingClass) const;
 	bool isIgnoreGlobalYieldCost(BuildingClassTypes eBuildingClass) const;
@@ -1685,6 +1687,7 @@ protected:
 	int* m_paiNumBonusesConsumedByProduction;
 	int* m_paiFoundHolyCityCount;
 	int* m_paiManaFromImprovement;
+	int* m_paiFaithFromImprovement;
 	int* m_paiIgnoreBuildingGYCostCount;
 /*************************************************************************************************/
 /**	END	                                        												**/

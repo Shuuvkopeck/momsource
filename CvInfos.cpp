@@ -14379,6 +14379,7 @@ m_pabHurry(NULL),
 m_pabSpecialBuildingNotRequired(NULL),
 m_pabSpecialistValid(NULL),
 m_ppiImprovementYieldChanges(NULL),
+m_iImprovementDiscountPercent(0),
 
 //FfH Civics: Added by Kael 08/11/2007
 m_bHidden(false),
@@ -14476,6 +14477,11 @@ int CvCivicInfo::getUpkeep() const
 int CvCivicInfo::getAIWeight() const
 {
 	return m_iAIWeight;
+}
+
+int CvCivicInfo::getImprovementDiscountPercent() const
+{
+	return m_iImprovementDiscountPercent;
 }
 
 int CvCivicInfo::getGreatPeopleRateModifier() const
@@ -15244,6 +15250,7 @@ bool CvCivicInfo::read(CvXMLLoadUtility* pXML)
 	pXML->GetChildXmlValByName(&m_iFreeSpecialist, "iFreeSpecialist");
 	pXML->GetChildXmlValByName(&m_iTradeRoutes, "iTradeRoutes");
 	pXML->GetChildXmlValByName(&m_bNoForeignTrade, "bNoForeignTrade");
+	pXML->GetChildXmlValByName(&m_iImprovementDiscountPercent, "iImprovementDiscountPercent");
 	pXML->GetChildXmlValByName(&m_bNoCorporations, "bNoCorporations");
 	pXML->GetChildXmlValByName(&m_bNoForeignCorporations, "bNoForeignCorporations");
 	pXML->GetChildXmlValByName(&m_iCivicPercentAnger, "iCivicPercentAnger");
@@ -15495,6 +15502,7 @@ void CvCivicInfo::copyNonDefaults(CvCivicInfo* pClassInfo, CvXMLLoadUtility* pXM
 	if (getGoldPerUnit()								== 0)				m_iGoldPerUnit								= pClassInfo->getGoldPerUnit();
 	if (getGoldPerMilitaryUnit()						== 0)				m_iGoldPerMilitaryUnit						= pClassInfo->getGoldPerMilitaryUnit();
 	if (getHappyPerMilitaryUnit()						== 0)				m_iHappyPerMilitaryUnit						= pClassInfo->getHappyPerMilitaryUnit();
+	if (getImprovementDiscountPercent()					== 0)				m_iImprovementDiscountPercent				= pClassInfo->getImprovementDiscountPercent();
 	if (getMaxConscript()								== 0)				m_iMaxConscript								= pClassInfo->getMaxConscript();
 	if (getLargestCityHappiness()						== 0)				m_iLargestCityHappiness						= pClassInfo->getLargestCityHappiness();
 	if (getWarWearinessModifier()						== 0)				m_iWarWearinessModifier						= pClassInfo->getWarWearinessModifier();
@@ -16444,6 +16452,8 @@ m_ppaiSpecialistCommerceChange(NULL),
 m_iMistDensity(0),
 m_iManaFromImprovement(0),
 m_iManaFromImprovementType(0),
+m_iFaithFromImprovement(0),
+m_iFaithFromImprovementType(0),
 m_iTaxesModifier(0),
 m_iBuildingMaintenance(0),
 m_iGPPThresholdReductionPercent(0),
@@ -17391,6 +17401,16 @@ int CvBuildingInfo::getManaFromImprovement() const
 int CvBuildingInfo::getManaFromImprovementType() const
 {
 	return m_iManaFromImprovementType;
+}
+
+int CvBuildingInfo::getFaithFromImprovement() const
+{
+	return m_iFaithFromImprovement;
+}
+
+int CvBuildingInfo::getFaithFromImprovementType() const
+{
+	return m_iFaithFromImprovementType;
 }
 
 int CvBuildingInfo::getTaxesModifier() const
@@ -19060,6 +19080,9 @@ bool CvBuildingInfo::read(CvXMLLoadUtility* pXML)
 	pXML->GetChildXmlValByName(&m_iManaFromImprovement, "iManaFromImprovement");
 	pXML->GetChildXmlValByName(szTextVal, "ManaFromImprovementType");
 	m_iManaFromImprovementType = pXML->FindInInfoClass(szTextVal);
+	pXML->GetChildXmlValByName(&m_iFaithFromImprovement, "iFaithFromImprovement");
+	pXML->GetChildXmlValByName(szTextVal, "FaithFromImprovementType");
+	m_iFaithFromImprovementType = pXML->FindInInfoClass(szTextVal);
 	pXML->GetChildXmlValByName(&m_iTaxesModifier, "iTaxesModifier");
 	pXML->GetChildXmlValByName(&m_iBuildingMaintenance, "iBuildingMaintenance");
 	pXML->GetChildXmlValByName(&m_iGPPThresholdReductionPercent, "iGPPThresholdReductionPercent");
@@ -19787,6 +19810,8 @@ void CvBuildingInfo::copyNonDefaults(CvBuildingInfo* pClassInfo, CvXMLLoadUtilit
 	if (getMistDensity()                        == 0       )            m_iMistDensity                      = pClassInfo->getMistDensity();
 	if (getManaFromImprovement()                == 0       )            m_iManaFromImprovement              = pClassInfo->getManaFromImprovement();
 	if (getManaFromImprovementType()            == NO_IMPROVEMENT       )            m_iManaFromImprovementType          = pClassInfo->getManaFromImprovementType();
+	if (getFaithFromImprovement()                == 0       )            m_iFaithFromImprovement              = pClassInfo->getFaithFromImprovement();
+	if (getFaithFromImprovementType()            == NO_IMPROVEMENT       )            m_iFaithFromImprovementType          = pClassInfo->getFaithFromImprovementType();
 	if (getTaxesModifier()                      == 0       )            m_iTaxesModifier                    = pClassInfo->getTaxesModifier();
 	if (getBuildingMaintenance()                == 0       )            m_iBuildingMaintenance              = pClassInfo->getBuildingMaintenance();
 	if (getGPPThresholdReductionPercent()       == 0       )            m_iGPPThresholdReductionPercent     = pClassInfo->getGPPThresholdReductionPercent();
