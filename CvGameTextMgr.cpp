@@ -9411,6 +9411,13 @@ void CvGameTextMgr::parseCivicInfo(CvWStringBuffer &szHelpText, CivicTypes eCivi
 		szHelpText.append(gDLL->getText("TXT_KEY_CIVIC_XP_PER_COMBAT_CHANGE", GC.getCivicInfo(eCivic).getXPPerCombatChange()));
 	}
 
+		//	Global Attitude Change
+	if (GC.getCivicInfo(eCivic).getGlobalAttitudeChange() != 0)
+	{
+		szHelpText.append(NEWLINE);
+		szHelpText.append(gDLL->getText("TXT_KEY_CIVIC_GLOBAL_ATTITUDE_CHANGE", GC.getCivicInfo(eCivic).getGlobalAttitudeChange()));
+	}
+
 	//	Free units population percent
 	if ((GC.getCivicInfo(eCivic).getBaseFreeUnits() != 0) || (GC.getCivicInfo(eCivic).getFreeUnitsPopulationPercent() != 0))
 	{
