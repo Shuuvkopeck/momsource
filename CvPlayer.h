@@ -572,6 +572,9 @@ public:
 	int getNonStateReligionHappiness() const;																																	// Exposed to Python
 	void changeNonStateReligionHappiness(int iChange);
 
+	int getCaptureCityGoldPercentChange() const;																																	// Exposed to Python
+	void changeCaptureCityGoldPercentChange(int iChange);
+
 	int getStateReligionUnitProductionModifier() const;																												// Exposed to Python 
 	void changeStateReligionUnitProductionModifier(int iChange);
 
@@ -1585,6 +1588,7 @@ protected:
 	int m_iPopRushHurryCount;
 	int m_iInflationModifier;
 	int m_iCrime;  //added by Darksavant
+	int m_iCaptureCityGoldPercentChange;
 
 	uint m_uiStartTime;  // XXX save these?
 

@@ -14380,6 +14380,10 @@ m_pabSpecialBuildingNotRequired(NULL),
 m_pabSpecialistValid(NULL),
 m_ppiImprovementYieldChanges(NULL),
 m_iImprovementDiscountPercent(0),
+m_iPillagePercentChange(0),
+m_iCaptureCityGoldPercentChange(0),
+m_iXPPerCombatChange(0),
+m_iGlobalAttitudeChange(0),
 
 //FfH Civics: Added by Kael 08/11/2007
 m_bHidden(false),
@@ -14482,6 +14486,26 @@ int CvCivicInfo::getAIWeight() const
 int CvCivicInfo::getImprovementDiscountPercent() const
 {
 	return m_iImprovementDiscountPercent;
+}
+
+int CvCivicInfo::getPillagePercentChange() const
+{
+	return m_iPillagePercentChange;
+}
+
+int CvCivicInfo::getCaptureCityGoldPercentChange() const
+{
+	return m_iCaptureCityGoldPercentChange;
+}
+
+int CvCivicInfo::getXPPerCombatChange() const
+{
+	return m_iXPPerCombatChange;
+}
+
+int CvCivicInfo::getGlobalAttitudeChange() const
+{
+	return m_iGlobalAttitudeChange;
 }
 
 int CvCivicInfo::getGreatPeopleRateModifier() const
@@ -15251,6 +15275,10 @@ bool CvCivicInfo::read(CvXMLLoadUtility* pXML)
 	pXML->GetChildXmlValByName(&m_iTradeRoutes, "iTradeRoutes");
 	pXML->GetChildXmlValByName(&m_bNoForeignTrade, "bNoForeignTrade");
 	pXML->GetChildXmlValByName(&m_iImprovementDiscountPercent, "iImprovementDiscountPercent");
+	pXML->GetChildXmlValByName(&m_iPillagePercentChange, "iPillagePercentChange");
+	pXML->GetChildXmlValByName(&m_iCaptureCityGoldPercentChange, "iCaptureCityGoldPercentChange");
+	pXML->GetChildXmlValByName(&m_iXPPerCombatChange, "iXPPerCombatChange");
+	pXML->GetChildXmlValByName(&m_iGlobalAttitudeChange, "m_iGlobalAttitudeChange");
 	pXML->GetChildXmlValByName(&m_bNoCorporations, "bNoCorporations");
 	pXML->GetChildXmlValByName(&m_bNoForeignCorporations, "bNoForeignCorporations");
 	pXML->GetChildXmlValByName(&m_iCivicPercentAnger, "iCivicPercentAnger");
@@ -15503,6 +15531,10 @@ void CvCivicInfo::copyNonDefaults(CvCivicInfo* pClassInfo, CvXMLLoadUtility* pXM
 	if (getGoldPerMilitaryUnit()						== 0)				m_iGoldPerMilitaryUnit						= pClassInfo->getGoldPerMilitaryUnit();
 	if (getHappyPerMilitaryUnit()						== 0)				m_iHappyPerMilitaryUnit						= pClassInfo->getHappyPerMilitaryUnit();
 	if (getImprovementDiscountPercent()					== 0)				m_iImprovementDiscountPercent				= pClassInfo->getImprovementDiscountPercent();
+	if (getPillagePercentChange()						== 0)				m_iPillagePercentChange						= pClassInfo->getPillagePercentChange();
+	if (getCaptureCityGoldPercentChange()				== 0)				m_iCaptureCityGoldPercentChange				= pClassInfo->getCaptureCityGoldPercentChange();
+	if (getXPPerCombatChange()							== 0)				m_iXPPerCombatChange						= pClassInfo->getXPPerCombatChange();
+	if (getGlobalAttitudeChange()						== 0)				m_iGlobalAttitudeChange						= pClassInfo->getGlobalAttitudeChange();
 	if (getMaxConscript()								== 0)				m_iMaxConscript								= pClassInfo->getMaxConscript();
 	if (getLargestCityHappiness()						== 0)				m_iLargestCityHappiness						= pClassInfo->getLargestCityHappiness();
 	if (getWarWearinessModifier()						== 0)				m_iWarWearinessModifier						= pClassInfo->getWarWearinessModifier();

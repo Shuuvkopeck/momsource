@@ -3536,6 +3536,10 @@ public:
 	bool isStateReligion() const;				// Exposed to Python
 	bool isNoNonStateReligionSpread() const;				// Exposed to Python
 	int getImprovementDiscountPercent() const;
+	int getPillagePercentChange() const;
+	int getCaptureCityGoldPercentChange() const;
+	int getXPPerCombatChange() const;
+	int getGlobalAttitudeChange() const;
 
 	std::wstring pyGetWeLoveTheKing() { return getWeLoveTheKing(); }			// Exposed to Python
 	const wchar* getWeLoveTheKing();
@@ -3655,6 +3659,10 @@ protected:
 	int m_iStateReligionFreeExperience;
 	int m_iExpInBorderModifier;
 	int m_iImprovementDiscountPercent;
+	int m_iPillagePercentChange;
+	int m_iCaptureCityGoldPercentChange;
+	int m_iXPPerCombatChange;
+	int m_iGlobalAttitudeChange;
 
 	bool m_bMilitaryFoodProduction;
 	bool m_bNoUnhealthyPopulation;

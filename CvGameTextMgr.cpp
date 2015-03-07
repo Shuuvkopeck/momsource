@@ -9390,6 +9390,27 @@ void CvGameTextMgr::parseCivicInfo(CvWStringBuffer &szHelpText, CivicTypes eCivi
 		szHelpText.append(gDLL->getText("TXT_KEY_CIVIC_MILITARY_PRODUCTION", GC.getCivicInfo(eCivic).getMilitaryProductionModifier()));
 	}
 
+	//	Pillage Change
+	if (GC.getCivicInfo(eCivic).getPillagePercentChange() != 0)
+	{
+		szHelpText.append(NEWLINE);
+		szHelpText.append(gDLL->getText("TXT_KEY_CIVIC_PILLAGE_PERCENT_CHANGE", GC.getCivicInfo(eCivic).getPillagePercentChange()));
+	}
+
+	//	Conquer City Gold Percent Change
+	if (GC.getCivicInfo(eCivic).getCaptureCityGoldPercentChange() != 0)
+	{
+		szHelpText.append(NEWLINE);
+		szHelpText.append(gDLL->getText("TXT_KEY_CIVIC_CAPTURE_CITY_GOLD_PERCENT_CHANGE", GC.getCivicInfo(eCivic).getCaptureCityGoldPercentChange()));
+	}
+
+		//	Free XP Per Combat
+	if (GC.getCivicInfo(eCivic).getXPPerCombatChange() != 0)
+	{
+		szHelpText.append(NEWLINE);
+		szHelpText.append(gDLL->getText("TXT_KEY_CIVIC_XP_PER_COMBAT_CHANGE", GC.getCivicInfo(eCivic).getXPPerCombatChange()));
+	}
+
 	//	Free units population percent
 	if ((GC.getCivicInfo(eCivic).getBaseFreeUnits() != 0) || (GC.getCivicInfo(eCivic).getFreeUnitsPopulationPercent() != 0))
 	{

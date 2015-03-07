@@ -646,6 +646,7 @@ void CvPlayer::reset(PlayerTypes eID, bool bConstructorCall)
 	m_iInflationModifier = 0;
 	m_uiStartTime = 0;
 	m_iCrime = 0;
+	m_iCaptureCityGoldPercentChange = 0;
 
 	m_bAlive = false;
 	m_bEverAlive = false;
@@ -1964,6 +1965,7 @@ void CvPlayer::acquireCity(CvCity* pOldCity, bool bConquest, bool bTrade, bool b
 		delete pyOldCity;	// python fxn must not hold on to this pointer
 
 		iCaptureGold = (int)lCaptureGold;
+		iCaptureGold = iCaptureGold * (100 + getCaptureCityGoldPercentChange()) / 100;
 	}
 
 	changeGold(iCaptureGold);
@@ -18853,6 +18855,20 @@ void CvPlayer::processCivics(CivicTypes eCivic, int iChange)
 	changeStateReligionBuildingProductionModifier(GC.getCivicInfo(eCivic).getStateReligionBuildingProductionModifier() * iChange);
 	changeStateReligionFreeExperience(GC.getCivicInfo(eCivic).getStateReligionFreeExperience() * iChange);
 	changeExpInBorderModifier(GC.getCivicInfo(eCivic).getExpInBorderModifier() * iChange);
+	changeCaptureCityGoldPercentChange(GC.getCivicInfo(eCivic).getCaptureCityGoldPercentChange() * iChange);
+	changeFreeXPFromCombat(GC.getCivicInfo(eCivic).getXPPerCombatChange() * iChange);
+	changePillagingGold(GC.getCivicInfo(eCivic).getPillagePercentChange() * iChange);
+
+	if (GC.getCivicInfo(eCivic).getGlobalAttitudeChange() != 0)
+	{
+		for (int iI = 0; iI < MAX_PLAYERS; iI++)
+		{
+			if (!GET_PLAYER((PlayerTypes)iI).isHuman() && GET_PLAYER((PlayerTypes)iI).isAlive() && (iI != getID()))
+			{
+				GET_PLAYER((PlayerTypes)iI).AI_changeAttitudeExtra(getID(), (GC.getCivicInfo(eCivic).getGlobalAttitudeChange() * iChange));
+			}
+		}
+	}
 
 //FfH Civics: Added by Kael 08/11/2007
     changeCoastalTradeRoutes(GC.getCivicInfo(eCivic).getCoastalTradeRoutes() * iChange);
@@ -18981,6 +18997,7 @@ void CvPlayer::read(FDataStreamBase* pStream)
 	pStream->Read(&m_iTotalLandScored);
 	pStream->Read(&m_iGold);
 	pStream->Read(&m_iCrime);
+	pStream->Read(&m_iCaptureCityGoldPercentChange);
 	pStream->Read(&m_iGoldPerTurn);
 	pStream->Read(&m_iAdvancedStartPoints);
 	pStream->Read(&m_iGoldenAgeTurns);
@@ -19606,6 +19623,7 @@ void CvPlayer::write(FDataStreamBase* pStream)
 	pStream->Write(m_iTotalLandScored);
 	pStream->Write(m_iGold);
 	pStream->Write(m_iCrime);
+	pStream->Write(m_iCaptureCityGoldPercentChange);
 	pStream->Write(m_iGoldPerTurn);
 	pStream->Write(m_iAdvancedStartPoints);
 	pStream->Write(m_iGoldenAgeTurns);
@@ -31318,6 +31336,17 @@ void CvPlayer::changeCrime(int iChange)
 {
 	m_iCrime += iChange;
 }
+
+int CvPlayer::getCaptureCityGoldPercentChange() const
+{
+	return m_iCaptureCityGoldPercentChange;
+}
+
+void CvPlayer::changeCaptureCityGoldPercentChange(int iChange)
+{
+	m_iCaptureCityGoldPercentChange += iChange;
+}
+
 
 void CvPlayer::AdvanceMagicRitual()
 {
