@@ -15278,7 +15278,7 @@ bool CvCivicInfo::read(CvXMLLoadUtility* pXML)
 	pXML->GetChildXmlValByName(&m_iPillagePercentChange, "iPillagePercentChange");
 	pXML->GetChildXmlValByName(&m_iCaptureCityGoldPercentChange, "iCaptureCityGoldPercentChange");
 	pXML->GetChildXmlValByName(&m_iXPPerCombatChange, "iXPPerCombatChange");
-	pXML->GetChildXmlValByName(&m_iGlobalAttitudeChange, "m_iGlobalAttitudeChange");
+	pXML->GetChildXmlValByName(&m_iGlobalAttitudeChange, "iGlobalAttitudeChange");
 	pXML->GetChildXmlValByName(&m_bNoCorporations, "bNoCorporations");
 	pXML->GetChildXmlValByName(&m_bNoForeignCorporations, "bNoForeignCorporations");
 	pXML->GetChildXmlValByName(&m_iCivicPercentAnger, "iCivicPercentAnger");
