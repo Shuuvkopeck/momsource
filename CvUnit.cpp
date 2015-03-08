@@ -11000,7 +11000,22 @@ int CvUnit::baseMoves() const
 	{
 		return 0;
 	}
-	return (m_pUnitInfo->getMoves() + getExtraMoves() + GET_TEAM(getTeam()).getExtraMoves(getDomainType()));
+	int base_moves = m_pUnitInfo->getMoves();
+
+	FAssert(base_moves >= 0);
+    FAssert(base_moves <= 10);
+
+	int extra_moves = getExtraMoves();
+
+	FAssert(extra_moves >= 0);
+    FAssert(extra_moves <= 10);
+
+	int team_moves = GET_TEAM(getTeam()).getExtraMoves(getDomainType());
+
+	FAssert(team_moves >= 0);
+    FAssert(team_moves <= 10);
+
+	return (base_moves + extra_moves + team_moves);
 }
 
 
@@ -14548,8 +14563,8 @@ void CvUnit::setMoves(int iNewValue)
 
 		m_iMoves = iNewValue;
 
-		FAssert(getMoves() >= 0);
-		FAssert(getMoves() <= 10);
+		//FAssert(getMoves() >= 0);
+		//FAssert(getMoves() <= 10);
 
 //>>>>BUGFfH: Deleted by Denev 2009/09/29
 /*	Eliminate Hasting micromanagement	*/
@@ -15101,8 +15116,8 @@ int CvUnit::getExtraMoves() const
 void CvUnit::changeExtraMoves(int iChange)
 {
 	m_iExtraMoves += iChange;
-	FAssert(m_iExtraMoves >= 0);
-	FAssert(m_iExtraMoves <= 6);
+	//FAssert(m_iExtraMoves >= 0);
+	//FAssert(m_iExtraMoves <= 6);
 }
 
 
@@ -21917,6 +21932,9 @@ void CvUnit::read(FDataStreamBase* pStream)
 	pStream->Read(&m_iAmphibCount);
 	pStream->Read(&m_iRiverCount);
 	pStream->Read(&m_iEnemyRouteCount);
+	pStream->Read(&m_iChanceMiscast);
+	pStream->Read(&m_iEnslaveChance);
+	pStream->Read(&m_iCaptureChance);
 	pStream->Read(&m_iAlwaysHealCount);
 	pStream->Read(&m_iHillsDoubleMoveCount);
 	pStream->Read(&m_iImmuneToFirstStrikesCount);
@@ -21932,9 +21950,6 @@ void CvUnit::read(FDataStreamBase* pStream)
 	pStream->Read(&m_iExtraCollateralDamage);
 	pStream->Read(&m_iExtraBombardRate);
 	pStream->Read(&m_iExtraEnemyHeal);
-	pStream->Read(&m_iChanceMiscast);
-	pStream->Read(&m_iEnslaveChance);
-	pStream->Read(&m_iCaptureChance);
 	pStream->Read(&m_iExtraNeutralHeal);
 	pStream->Read(&m_iExtraFriendlyHeal);
 	pStream->Read(&m_iSameTileHeal);
