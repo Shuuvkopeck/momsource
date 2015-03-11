@@ -9758,7 +9758,7 @@ void CvCity::setTradeYield(YieldTypes eIndex, int iNewValue)
 		m_aiTradeYield[eIndex] = iNewValue;
 		FAssert(getTradeYield(eIndex) >= 0);
 
-		changeBaseYieldRate(eIndex, (iNewValue - iOldValue));
+		changeBaseYieldRate(eIndex, (iNewValue - iOldValue), true); //Darksavant added true here to see if I could get new Barter civic to work
 	}
 }
 

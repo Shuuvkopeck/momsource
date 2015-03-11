@@ -23136,6 +23136,20 @@ void CvGameTextMgr::setTradeRouteHelp(CvWStringBuffer &szBuffer, int iRoute, CvC
 
 			szBuffer.append(NEWLINE);
 			szBuffer.append(gDLL->getText("TXT_KEY_TRADE_ROUTE_TOTAL", iProfit));
+
+			CvWString szBufferTemp;
+
+
+			for (int iI = 0; iI < NUM_YIELD_TYPES; ++iI)
+			{
+				if (iI != YIELD_COMMERCE && pCity->calculateTradeYield((YieldTypes)iI, iProfit) > 0)
+				{
+					szBufferTemp.append(NEWLINE);
+					szBufferTemp += CvWString::format(L"%d %c: Total", pCity->calculateTradeYield((YieldTypes)iI, iProfit), GC.getYieldInfo((YieldTypes)iI).getChar());
+				}
+			}
+
+			szBuffer.append(szBufferTemp);
 		}
 	}
 }
