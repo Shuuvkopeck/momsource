@@ -30655,7 +30655,8 @@ bool CvPlayer::AI_isUnitCategory(UnitTypes eUnit, UnitCategoryTypes eUnitCategor
 			}
 			break;
 		case UNITCATEGORY_WARWIZARD:
-			if(kUnit.getArcaneRange() > 0 && kUnit.getUnitCombatType() == GC.getUNITCOMBAT_ADEPT())
+			//Darksavant added Disciples to this category as well to hopefully get them casting
+			if(kUnit.getArcaneRange() > 0 && (kUnit.getUnitCombatType() == GC.getUNITCOMBAT_ADEPT() || kUnit.getUnitCombatType() == GC.getInfoTypeForString("UNITCOMBAT_DISCIPLE")))
 			{
 				return true;
 			}

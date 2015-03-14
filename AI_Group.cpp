@@ -3570,7 +3570,8 @@ void CvAIGroup::TargetSpell(CvPlot* pTarget, int iThreshold)
 					{
 						if(pLoopUnit->canCastAt((SpellTypes)iI,pTarget))
 						{
-							if(pLoopUnit->castDamage((SpellTypes)iI,pTarget,true)/std::max(1,GC.getSpellInfo((SpellTypes)iI).getManaCost())>=iThreshold)
+							//Darksavant added faith cost here as well to try to get divine units casting
+							if(pLoopUnit->castDamage((SpellTypes)iI,pTarget,true)/std::max(1,(GC.getSpellInfo((SpellTypes)iI).getManaCost() + (GC.getSpellInfo((SpellTypes)iI).getFaithCost()/2)))>=iThreshold)
 							{
 								pLoopUnit->cast((SpellTypes)iI,pTarget);
 							}

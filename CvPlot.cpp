@@ -12394,7 +12394,9 @@ bool CvPlot::doTerraformRitual(ProjectTypes eRitual, PlayerTypes eCaster, int& i
 			iMod=4;
 	}
 
-	if(kProject.isHostileTerraform() && isOwned() && GET_PLAYER(getOwnerINLINE()).getResistHostileTerraforming()>0)
+	int iResistHostileTerraforming = GET_PLAYER(getOwnerINLINE()).getResistHostileTerraforming();
+
+	if(kProject.isHostileTerraform() && isOwned() && iResistHostileTerraforming > 0)
 	{
 		//Darksavant
 		//Previously the Resist Hostile Terraforming ability of some rituals listed a % chance of avoiding hostile terraforming but the code basically just ignored this and halved the terrain effected
@@ -12404,7 +12406,7 @@ bool CvPlot::doTerraformRitual(ProjectTypes eRitual, PlayerTypes eCaster, int& i
 		//original code
 		//iMod/=2;
 
-		if (GC.getGameINLINE().getSorenRandNum(100, "Resist Hostile Terraform Chance") < GET_PLAYER(getOwnerINLINE()).getResistHostileTerraforming())
+		if (GC.getGameINLINE().getSorenRandNum(100, "Resist Hostile Terraform Chance") < iResistHostileTerraforming)
 		{
 			bProtected = true;
 		}
@@ -12788,8 +12790,14 @@ bool CvPlot::doTerraformRitual(ProjectTypes eRitual, PlayerTypes eCaster, int& i
 		{
 			if(kProject.isHostileTerraform())
 			{
-				gDLL->getInterfaceIFace()->addMessage(getOwnerINLINE(),true,GC.getEVENT_MESSAGE_TIME(),kProject.getDescription(),0,MESSAGE_TYPE_MINOR_EVENT,kProject.getButton(),(ColorTypes)GC.getInfoTypeForString("COLOR_RED"),getX_INLINE(),getY_INLINE(),true,true);
-
+				if (bProtected)
+				{
+					gDLL->getInterfaceIFace()->addMessage(getOwnerINLINE(),true,GC.getEVENT_MESSAGE_TIME(),kProject.getDescription(),0,MESSAGE_TYPE_MINOR_EVENT,kProject.getButton(),(ColorTypes)GC.getInfoTypeForString("COLOR_GREEN"),getX_INLINE(),getY_INLINE(),true,true);
+				}
+				else
+				{
+					gDLL->getInterfaceIFace()->addMessage(getOwnerINLINE(),true,GC.getEVENT_MESSAGE_TIME(),kProject.getDescription(),0,MESSAGE_TYPE_MINOR_EVENT,kProject.getButton(),(ColorTypes)GC.getInfoTypeForString("COLOR_RED"),getX_INLINE(),getY_INLINE(),true,true);
+				}
 				GET_TEAM(getTeam()).AI_changeWarValueAccumulated(GET_PLAYER(eCaster).getTeam(),-100);
 				GET_TEAM(GET_PLAYER(eCaster).getTeam()).AI_changeWarValueAccumulated(getTeam(),100);
 			}
